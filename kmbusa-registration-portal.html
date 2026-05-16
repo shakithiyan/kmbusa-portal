@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>KMBUSA Registration Portal 2025/2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue: #1560A8;
+  --blue-dark: #0C3F75;
+  --blue-light: #E6F1FB;
+  --blue-mid: #4A90D9;
+  --white: #ffffff;
+  --bg: #F4F7FB;
+  --text: #1a2332;
+  --text-muted: #6B7A90;
+  --border: #D0DCF0;
+  --success: #1e7e34;
+  --success-bg: #d4edda;
+  --danger: #a30000;
+  --danger-bg: #fde8e8;
+  --warning-bg: #FFF8E1;
+  --warning: #8a6000;
+  --radius: 10px;
+  --radius-lg: 16px;
+  --shadow: 0 2px 16px rgba(21,96,168,0.10);
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 100%);
+  color: white;
+  padding: 0 24px;
+  box-shadow: 0 2px 12px rgba(12,63,117,0.25);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 68px;
+}
+.logo {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: white;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--blue);
+  flex-shrink: 0;
+  letter-spacing: -0.5px;
+}
+.header-text { flex: 1; }
+.header-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.header-sub { font-size: 11.5px; opacity: 0.75; margin-top: 1px; }
+.nav-pills { display: flex; gap: 6px; }
+.nav-pill {
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.28);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.nav-pill:hover { background: rgba(255,255,255,0.22); }
+.nav-pill.active { background: white; color: var(--blue); border-color: white; }
+
+/* VIEWS */
+.view { display: none; }
+.view.active { display: block; }
+
+.page { max-width: 960px; margin: 0 auto; padding: 32px 20px 60px; }
+
+/* CARDS */
+.card {
+  background: white;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  padding: 28px;
+  margin-bottom: 20px;
+}
+.card-head { margin-bottom: 22px; }
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--blue-dark);
+}
+.card-sub { font-size: 13.5px; color: var(--text-muted); margin-top: 4px; }
+
+/* FORM */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group.full { grid-column: 1 / -1; }
+label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+input[type="text"], input[type="password"], select {
+  width: 100%;
+  padding: 10px 13px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+  background: #FAFCFF;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  -webkit-appearance: none;
+}
+input:focus, select:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(21,96,168,0.12);
+  background: white;
+}
+.radio-row { display: flex; gap: 20px; padding: 8px 0; }
+.radio-opt {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 14px; cursor: pointer; color: var(--text);
+}
+.radio-opt input[type="radio"] {
+  width: 17px; height: 17px;
+  accent-color: var(--blue);
+  cursor: pointer;
+}
+
+/* BUTTONS */
+.btn-primary {
+  background: var(--blue);
+  color: white;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.02em;
+  transition: background 0.2s, transform 0.1s;
+}
+.btn-primary:hover { background: var(--blue-dark); }
+.btn-primary:active { transform: scale(0.98); }
+
+/* ALERTS */
+.alert {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  font-size: 13.5px;
+  margin-bottom: 20px;
+}
+.alert-success { background: var(--success-bg); color: var(--success); border: 1px solid #b8dfc1; }
+.alert-danger { background: var(--danger-bg); color: var(--danger); border: 1px solid #f0b8b8; }
+.alert svg { flex-shrink: 0; margin-top: 1px; }
+
+/* STATS */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
+@media (max-width: 600px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+.stat-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+}
+.stat-label { font-size: 11.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-muted); margin-bottom: 6px; }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; }
+.stat-num.blue { color: var(--blue); }
+.stat-num.green { color: #1e7e34; }
+.stat-num.amber { color: #8a6000; }
+.stat-num.red { color: #a30000; }
+
+/* TABS */
+.tab-row { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+.tab {
+  padding: 7px 18px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1.5px solid var(--border);
+  background: white;
+  color: var(--text-muted);
+  transition: all 0.18s;
+  font-family: 'DM Sans', sans-serif;
+}
+.tab:hover { border-color: var(--blue); color: var(--blue); }
+.tab.active { background: var(--blue); color: white; border-color: var(--blue); }
+
+/* FILTERS */
+.filter-row {
+  display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; align-items: center;
+}
+.filter-row input, .filter-row select {
+  width: auto; flex: 1; min-width: 140px;
+}
+.btn-export {
+  background: white;
+  border: 1.5px solid var(--border);
+  color: var(--text);
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.18s;
+  white-space: nowrap;
+}
+.btn-export:hover { border-color: var(--blue); color: var(--blue); }
+
+/* TABLE */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 700px; }
+th {
+  text-align: left;
+  padding: 9px 12px;
+  border-bottom: 2px solid var(--border);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  white-space: nowrap;
+  background: #F8FAFD;
+}
+td { padding: 11px 12px; border-bottom: 1px solid #EEF2F8; color: var(--text); vertical-align: middle; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #F4F7FB; }
+
+/* BADGES */
+.badge {
+  display: inline-block;
+  padding: 3px 11px;
+  border-radius: 20px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+.badge-pending { background: var(--warning-bg); color: var(--warning); }
+.badge-approved { background: var(--success-bg); color: var(--success); }
+.badge-rejected { background: var(--danger-bg); color: var(--danger); }
+
+/* ACTION BUTTONS */
+.act-btn {
+  padding: 4px 11px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1.5px solid;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.act-approve { background: var(--success-bg); color: var(--success); border-color: #9fd4a9; }
+.act-approve:hover { background: #b8dfc1; }
+.act-reject { background: var(--danger-bg); color: var(--danger); border-color: #f0b8b8; margin-left: 5px; }
+.act-reject:hover { background: #f7c8c8; }
+
+.empty { text-align: center; padding: 3rem 1rem; color: var(--text-muted); font-size: 14px; }
+.empty-icon { font-size: 40px; margin-bottom: 10px; }
+
+/* LOGIN CARD */
+.login-wrap { max-width: 380px; margin: 60px auto 0; }
+.login-icon {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: var(--blue-light);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 18px;
+}
+
+/* HERO BANNER */
+.hero {
+  background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 60%, var(--blue-mid) 100%);
+  border-radius: var(--radius-lg);
+  color: white;
+  padding: 32px 28px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.07);
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -30px; right: 60px;
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.hero-desc { font-size: 14px; opacity: 0.82; line-height: 1.6; max-width: 480px; }
+.hero-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  letter-spacing: 0.05em;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 20px 0;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.reg-count {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* No visible scrollbar styling needed */
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">KM</div>
+    <div class="header-text">
+      <div class="header-title">KMBUSA Registration Portal</div>
+      <div class="header-sub">Kilinochchi Maths Bio University Students' Association</div>
+    </div>
+    <nav class="nav-pills">
+      <button class="nav-pill active" onclick="showView('student')" id="btn-student">Register</button>
+      <button class="nav-pill" onclick="showView('admin-login')" id="btn-admin">Admin</button>
+    </nav>
+  </div>
+</header>
+
+<!-- STUDENT VIEW -->
+<div class="view active" id="view-student">
+  <div class="page">
+    <div class="hero">
+      <div class="hero-badge">&#128197; Pilot Exam 2025 / 2026</div>
+      <div class="hero-title">Exam Registration Open</div>
+      <div class="hero-desc">Register for the KMBUSA pilot examinations. Fill in all details accurately as per your NIC and school records. Your registration will be reviewed and you will be notified.</div>
+    </div>
+
+    <div id="success-alert" class="alert alert-success" style="display:none;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
+      <span>Registration submitted successfully! Your application is under review by the admin.</span>
+    </div>
+    <div id="error-alert" class="alert alert-danger" style="display:none;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <span id="error-msg">Please fill in all fields before submitting.</span>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">Student Registration Form</div>
+        <div class="card-sub">All fields are required. Enter details exactly as in your official documents.</div>
+      </div>
+      <div class="form-grid">
+        <div class="form-group full">
+          <label>Full Name</label>
+          <input type="text" id="f-name" placeholder="As in NIC / Birth certificate" />
+        </div>
+        <div class="form-group">
+          <label>NIC Number</label>
+          <input type="text" id="f-nic" placeholder="e.g. 200012345678" />
+        </div>
+        <div class="form-group">
+          <label>Contact Number</label>
+          <input type="text" id="f-phone" placeholder="e.g. 0771234567" />
+        </div>
+        <div class="form-group full">
+          <label>School Name</label>
+          <input type="text" id="f-school" placeholder="Full name of your school" />
+        </div>
+        <div class="form-group">
+          <label>Academic Stream</label>
+          <select id="f-stream">
+            <option value="">Select your stream</option>
+            <option value="Biology">Biology</option>
+            <option value="Combined Maths">Combined Maths</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Exam Batch Year</label>
+          <select id="f-batch">
+            <option value="">Select batch year</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label>Gender</label>
+          <div class="radio-row">
+            <label class="radio-opt"><input type="radio" name="gender" value="male" /> Male</label>
+            <label class="radio-opt"><input type="radio" name="gender" value="female" /> Female</label>
+          </div>
+        </div>
+      </div>
+      <button class="btn-primary" onclick="submitRegistration()">Submit Registration &rarr;</button>
+    </div>
+
+    <div style="text-align:center; font-size:12.5px; color:var(--text-muted); margin-top:8px;">
+      Administered by KMBUSA &bull; For help contact the association directly
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN LOGIN VIEW -->
+<div class="view" id="view-admin-login">
+  <div class="page">
+    <div class="login-wrap">
+      <div class="card">
+        <div style="text-align:center; margin-bottom:22px;">
+          <div class="login-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1560A8" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div class="card-title">Admin Login</div>
+          <div class="card-sub" style="margin-top:4px;">Enter password to access the dashboard</div>
+        </div>
+        <div class="form-group" style="margin-bottom:14px;">
+          <label>Password</label>
+          <input type="password" id="admin-pwd" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')checkAdmin()" />
+        </div>
+        <div id="pwd-error" class="alert alert-danger" style="display:none; margin-bottom:12px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Incorrect password. Please try again.
+        </div>
+        <button class="btn-primary" onclick="checkAdmin()">Login to Dashboard &rarr;</button>
+        <div style="text-align:center; font-size:12px; color:var(--text-muted); margin-top:16px;">
+          Default password: <strong>admin123</strong> &mdash; change it in the code
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN DASHBOARD VIEW -->
+<div class="view" id="view-admin">
+  <div class="page">
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:22px; flex-wrap:wrap; gap:10px;">
+      <div>
+        <div class="card-title" style="font-family:'Playfair Display',serif; font-size:22px;">Admin Dashboard</div>
+        <div class="card-sub" style="margin-top:3px;">Manage and review student registrations</div>
+      </div>
+      <button class="btn-export" onclick="showView('student'); document.getElementById('btn-student').classList.add('active'); document.getElementById('btn-admin').classList.remove('active');">
+        &larr; Back to portal
+      </button>
+    </div>
+
+    <div class="stats-grid" id="stats-grid"></div>
+
+    <div class="card">
+      <div class="section-header">
+        <div>
+          <div class="card-title" style="font-size:16px;">All Registrations</div>
+          <div class="reg-count" id="reg-count"></div>
+        </div>
+        <button class="btn-export" onclick="exportCSV()">
+          &#8659; Export CSV
+        </button>
+      </div>
+
+      <div class="tab-row">
+        <button class="tab active" onclick="filterTab('all',this)">All</button>
+        <button class="tab" onclick="filterTab('pending',this)">Pending</button>
+        <button class="tab" onclick="filterTab('approved',this)">Approved</button>
+        <button class="tab" onclick="filterTab('rejected',this)">Rejected</button>
+      </div>
+
+      <div class="filter-row">
+        <input type="text" id="search-input" placeholder="Search by name, NIC or school..." oninput="renderTable()" />
+        <select id="stream-filter" onchange="renderTable()">
+          <option value="">All streams</option>
+          <option value="Biology">Biology</option>
+          <option value="Combined Maths">Combined Maths</option>
+        </select>
+        <select id="batch-filter" onchange="renderTable()">
+          <option value="">All batches</option>
+          <option value="2024">2024</option>
+          <option value="2025">2025</option>
+          <option value="2026">2026</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Full Name</th>
+              <th>NIC</th>
+              <th>School</th>
+              <th>Stream</th>
+              <th>Batch</th>
+              <th>Gender</th>
+              <th>Contact</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="reg-tbody"></tbody>
+        </table>
+      </div>
+      <div id="empty-state" class="empty" style="display:none;">
+        <div class="empty-icon">📭</div>
+        No registrations found matching your filters.
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const ADMIN_PASSWORD = 'admin123';
+
+let registrations = JSON.parse(localStorage.getItem('kmbusa_regs') || '[]');
+let nextId = parseInt(localStorage.getItem('kmbusa_next_id') || '1');
+let currentTab = 'all';
+
+function save() {
+  localStorage.setItem('kmbusa_regs', JSON.stringify(registrations));
+  localStorage.setItem('kmbusa_next_id', String(nextId));
+}
+
+function showView(v) {
+  document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-pill').forEach(el => el.classList.remove('active'));
+  document.getElementById('view-' + v).classList.add('active');
+  if (v === 'student') document.getElementById('btn-student').classList.add('active');
+  else if (v === 'admin-login') document.getElementById('btn-admin').classList.add('active');
+  else if (v === 'admin') { document.getElementById('btn-admin').classList.add('active'); renderStats(); renderTable(); }
+}
+
+function checkAdmin() {
+  const pwd = document.getElementById('admin-pwd').value;
+  document.getElementById('pwd-error').style.display = 'none';
+  if (pwd === ADMIN_PASSWORD) {
+    document.getElementById('admin-pwd').value = '';
+    showView('admin');
+  } else {
+    document.getElementById('pwd-error').style.display = 'flex';
+  }
+}
+
+function submitRegistration() {
+  const name = document.getElementById('f-name').value.trim();
+  const nic = document.getElementById('f-nic').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  const school = document.getElementById('f-school').value.trim();
+  const stream = document.getElementById('f-stream').value;
+  const batch = document.getElementById('f-batch').value;
+  const genderEl = document.querySelector('input[name="gender"]:checked');
+
+  document.getElementById('success-alert').style.display = 'none';
+  document.getElementById('error-alert').style.display = 'none';
+
+  if (!name || !nic || !phone || !school || !stream || !batch || !genderEl) {
+    document.getElementById('error-msg').textContent = 'Please fill in all fields before submitting.';
+    document.getElementById('error-alert').style.display = 'flex';
+    window.scrollTo({ top: 200, behavior: 'smooth' });
+    return;
+  }
+
+  const duplicate = registrations.find(r => r.nic === nic);
+  if (duplicate) {
+    document.getElementById('error-msg').textContent = 'A registration with this NIC number already exists.';
+    document.getElementById('error-alert').style.display = 'flex';
+    return;
+  }
+
+  registrations.push({
+    id: nextId++,
+    fullName: name, nic, school, stream, batch,
+    gender: genderEl.value, contact: phone,
+    status: 'pending',
+    createdAt: new Date().toLocaleDateString('en-GB')
+  });
+  save();
+
+  document.getElementById('f-name').value = '';
+  document.getElementById('f-nic').value = '';
+  document.getElementById('f-phone').value = '';
+  document.getElementById('f-school').value = '';
+  document.getElementById('f-stream').value = '';
+  document.getElementById('f-batch').value = '';
+  if (genderEl) genderEl.checked = false;
+
+  document.getElementById('success-alert').style.display = 'flex';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  setTimeout(() => { document.getElementById('success-alert').style.display = 'none'; }, 6000);
+}
+
+function renderStats() {
+  const total = registrations.length;
+  const pending = registrations.filter(r => r.status === 'pending').length;
+  const approved = registrations.filter(r => r.status === 'approved').length;
+  const rejected = registrations.filter(r => r.status === 'rejected').length;
+  document.getElementById('stats-grid').innerHTML = `
+    <div class="stat-card"><div class="stat-label">Total</div><div class="stat-num blue">${total}</div></div>
+    <div class="stat-card"><div class="stat-label">Pending</div><div class="stat-num amber">${pending}</div></div>
+    <div class="stat-card"><div class="stat-label">Approved</div><div class="stat-num green">${approved}</div></div>
+    <div class="stat-card"><div class="stat-label">Rejected</div><div class="stat-num red">${rejected}</div></div>
+  `;
+}
+
+function filterTab(tab, el) {
+  currentTab = tab;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  renderTable();
+}
+
+function renderTable() {
+  const search = document.getElementById('search-input').value.toLowerCase();
+  const streamF = document.getElementById('stream-filter').value;
+  const batchF = document.getElementById('batch-filter').value;
+
+  let data = registrations.filter(r => {
+    if (currentTab !== 'all' && r.status !== currentTab) return false;
+    if (streamF && r.stream !== streamF) return false;
+    if (batchF && r.batch !== batchF) return false;
+    if (search && !r.fullName.toLowerCase().includes(search) && !r.nic.toLowerCase().includes(search) && !r.school.toLowerCase().includes(search)) return false;
+    return true;
+  });
+
+  const tbody = document.getElementById('reg-tbody');
+  const empty = document.getElementById('empty-state');
+  document.getElementById('reg-count').textContent = data.length + ' registration' + (data.length !== 1 ? 's' : '') + ' found';
+
+  if (data.length === 0) { tbody.innerHTML = ''; empty.style.display = 'block'; return; }
+  empty.style.display = 'none';
+
+  tbody.innerHTML = data.map((r, i) => `
+    <tr>
+      <td style="color:var(--text-muted);font-size:12px;">${i + 1}</td>
+      <td style="font-weight:600;">${r.fullName}</td>
+      <td style="font-family:monospace;font-size:12.5px;">${r.nic}</td>
+      <td>${r.school}</td>
+      <td>${r.stream}</td>
+      <td>${r.batch}</td>
+      <td style="text-transform:capitalize;">${r.gender}</td>
+      <td>${r.contact}</td>
+      <td><span class="badge badge-${r.status}">${r.status.charAt(0).toUpperCase() + r.status.slice(1)}</span></td>
+      <td>
+        ${r.status === 'pending'
+          ? `<button class="act-btn act-approve" onclick="updateStatus(${r.id},'approved')">&#10003; Approve</button><button class="act-btn act-reject" onclick="updateStatus(${r.id},'rejected')">&#10007; Reject</button>`
+          : `<span style="font-size:12px;color:var(--text-muted);">Done</span>`
+        }
+      </td>
+    </tr>
+  `).join('');
+}
+
+function updateStatus(id, status) {
+  const r = registrations.find(x => x.id === id);
+  if (r) { r.status = status; save(); renderStats(); renderTable(); }
+}
+
+function exportCSV() {
+  const headers = ['#', 'Full Name', 'NIC', 'School', 'Stream', 'Batch', 'Gender', 'Contact', 'Status', 'Date'];
+  const rows = registrations.map((r, i) => [i+1, r.fullName, r.nic, r.school, r.stream, r.batch, r.gender, r.contact, r.status, r.createdAt]);
+  const csv = [headers, ...rows].map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = 'kmbusa-registrations.csv'; a.click();
+  URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>
